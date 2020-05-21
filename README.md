@@ -22,5 +22,3 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
-
-* Small update to the readme on update-readme branch
