@@ -11,12 +11,12 @@ class Api::V1::UsersController < ApplicationController
   end 
 
   def login
-    user = User.find_by(name: params[:name], password: params[:email])
+    user = User.find_by(email: params[:email], password: params[:password])
         if user != nil
             render json: user
         else 
             render json: {message: 'loggin Failed'}
-        end
+        ends
   end 
 
   def update

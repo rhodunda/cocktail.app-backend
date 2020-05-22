@@ -1,7 +1,7 @@
 class Api::V1::CocktailsController < ApplicationController
     def index
         cocktails = Cocktail.all
-        render json: cocktails
+        render json: cocktails, include: :ingredients
     end 
 
     def show

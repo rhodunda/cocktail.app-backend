@@ -12,9 +12,10 @@ require 'rest-client'
 
 DBcocktailAPI = RestClient.get 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 
+
 # DBcooktailAPI.each do |cocktail|
 # can we get all the cocktails?
-#     end
+# end
 
 puts "destorying data..."
 
