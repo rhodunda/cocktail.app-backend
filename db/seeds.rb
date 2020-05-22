@@ -46,8 +46,22 @@ Ingredients10 = Ingredient.create(name: "Hot Chocolate", image: "https://www.the
 
 puts "creating cocktails and cocktail ingredients..."
 
+cocktails = [
+  {name: 'Mojito', image: 'https://www.thecocktaildb.com/images/media/drink/3z6xdi1589574603.jpg'},
+  {name: 'Old Fashioned', image: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg'},
+  {name: 'Long Island Tea', image: 'https://www.thecocktaildb.com/images/media/drink/tppn6i1589574695.jpg'},
+  {name: 'Negroni', image: 'https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg'},
+  {name: 'Whiskey Sour', image: 'https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg'},
+  {name: 'Dry Martini', image: 'https://www.thecocktaildb.com/images/media/drink/6ck9yi1589574317.jpg'},
+  {name: 'Daiquiri', image: 'https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg'},
+  {name: 'Margarita', image: 'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg'},
+  {name: 'Manhattan', image: 'https://www.thecocktaildb.com/images/media/drink/hz7p4t1589575281.jpg'},
+  {name: 'Moscow Mule', image: 'https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg'}
+]
+
 5.times do
-  cocktail = Cocktail.create(name: "Mojito", image:"https://www.thecocktaildb.com/images/media/drink/3z6xdi1589574603.jpg", creator: User.all.sample)
+  cocktailSample = cocktails.sample;
+  cocktail = Cocktail.create(name: cocktailSample[:name], image: cocktailSample[:image], creator: User.all.sample)
   3.times do
     CocktailIngredient.create(ingredient: Ingredient.all.sample, cocktail: cocktail)
   end
