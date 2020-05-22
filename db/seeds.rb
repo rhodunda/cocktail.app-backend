@@ -11,15 +11,9 @@ require 'rest-client'
 DBcocktailAPI = RestClient.get 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 
 
-# rm_array.each do |character|
-#     Character.create(
-#     name: character[“name”],
-#     status: character[“status”],
-#     species: character[“species”],
-#     gender: character[“gender”],
-#     image: character[“image”]
-#     )
-#    end
+# DBcooktailAPI.each do |cocktail|
+# can we get all the cocktails?
+#     end
 
 puts "creating user..."
 
