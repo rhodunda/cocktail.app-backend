@@ -7,13 +7,20 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'rest-client'
 
-
 DBcocktailAPI = RestClient.get 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
-
 
 # DBcooktailAPI.each do |cocktail|
 # can we get all the cocktails?
 #     end
+
+puts "destorying data..."
+
+User.destroy_all
+Cocktail.destroy_all
+Ingredient.destroy_all
+Favorite.destroy_all
+Review.destroy_all
+CocktailIngredient.destroy_all
 
 puts "creating user..."
 
