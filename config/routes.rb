@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: [:index, :update]
+      resources :cocktail_ingredients
+      resources :reviews
+      resources :favorites
+      resources :ingredients
+      resources :cocktails
+      resources :delete
     end
   end
 end
