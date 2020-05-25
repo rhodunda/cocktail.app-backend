@@ -12,8 +12,8 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     user = User.new(email: params['email'], password: params['password'])
-    review.save
-    render json: review
+    user.save
+    render json: user
 end 
 
   def login
