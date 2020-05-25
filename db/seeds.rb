@@ -10,12 +10,6 @@ moxxie = User.create(email: 'moxxie@moxxie.com')
 bryan = User.create(email: 'bryan@bryan.com')
 require 'rest-client'
 
-DBcocktailAPI = RestClient.get 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
-
-
-# DBcooktailAPI.each do |cocktail|
-# can we get all the cocktails?
-# end
 
 puts "destorying data..."
 
@@ -60,11 +54,13 @@ cocktails = [
   {name: 'Moscow Mule', image: 'https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg'}
 ]
 
+measures = ['1 cup', '1 tbsp', '2 tbsp', '1 shot', '2 shots', '3 shots', '1 quart', '18 gallons']
+
 5.times do
   cocktailSample = cocktails.sample;
   cocktail = Cocktail.create(name: cocktailSample[:name], image: cocktailSample[:image], creator: User.all.sample)
   3.times do
-    CocktailIngredient.create(ingredient: Ingredient.all.sample, cocktail: cocktail)
+    CocktailIngredient.create(ingredient: Ingredient.all.sample, cocktail: cocktail, measure: measures.sample)
   end
 end
 

@@ -16,7 +16,7 @@ class Api::V1::UsersController < ApplicationController
             render json: user
         else 
             render json: {message: 'loggin Failed'}
-        ends
+        end
   end 
 
   def update
