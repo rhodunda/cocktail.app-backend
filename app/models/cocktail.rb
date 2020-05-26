@@ -15,7 +15,12 @@ class Cocktail < ApplicationRecord
         if apiResponse
             apiCocktails = JSON.parse(apiResponse)['drinks']
             if apiCocktails
-                apiCocktails.each { |cocktail| cocktails.push(parseApiCocktail(cocktail)) }
+                apiCocktails.each do |c|
+                    cocktail = parseApiCocktail(c)
+                    if !cocktails.find { |arr_cocktail| arr_cocktail.name == cocktail.name }
+                        cocktails.push(cocktail)
+                    end
+                end
             end
         end
 
