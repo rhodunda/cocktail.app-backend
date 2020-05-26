@@ -1,7 +1,7 @@
 class Api::V1::CocktailsController < ApplicationController
     def show
         cocktail = Cocktail.find(params[:id])
-        render json: cocktail, include: :creator
+        render json: cocktail.as_json(include: :creator)
     end 
 
     def create
@@ -12,11 +12,11 @@ class Api::V1::CocktailsController < ApplicationController
 
     def search_by_char
         cocktails = Cocktail.cocktails_by_char(params['q'])
-        render json: cocktails, include: [:ingredients]
+        render json: cocktails.as_json(include: :ingredients)
     end
 
     def search_by_name
         cocktails = Cocktail.cocktails_by_name(params['q'])
-        render json: cocktails
+        render json: cocktails.as_json(include: :ingredients)
     end
 end
