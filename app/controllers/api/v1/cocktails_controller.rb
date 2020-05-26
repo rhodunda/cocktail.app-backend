@@ -19,4 +19,9 @@ class Api::V1::CocktailsController < ApplicationController
         cocktails = Cocktail.cocktails_by_name(params['q'])
         render json: cocktails.as_json(include: :ingredients)
     end
+
+    def search_by_ingredient
+        cocktails = Cocktail.cocktails_by_ingredient(params['q'])
+        render json: cocktails.as_json(include: :ingredients)
+    end
 end
