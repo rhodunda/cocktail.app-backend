@@ -56,6 +56,7 @@ class Cocktail < ApplicationRecord
             else
                 ingredient = Ingredient.new(name: apiCocktail["strIngredient#{index + 1}"])
                 cocktail.ingredients << ingredient
+                cocktail.cocktailIngredients[index].measure = apiCocktail["strMeasure#{index + 1}"].to_s.strip
             end
         end
 
