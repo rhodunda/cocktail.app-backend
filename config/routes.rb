@@ -7,8 +7,9 @@ Rails.application.routes.draw do
       resources :reviews
       resources :favorites
       resources :ingredients
-      resources :cocktails
+      resources :cocktails, except: [:index]
       post 'cocktails/search-by-char', to: 'cocktails#search_by_char'
+      post 'cocktails/search-by-name', to: 'cocktails#search_by_name'
       post '/users/login' => 'users#login'
     end
   end

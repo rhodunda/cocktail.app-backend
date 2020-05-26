@@ -5,26 +5,43 @@ class Cocktail < ApplicationRecord
     has_many :ingredients, through: :cocktailIngredients
     belongs_to :creator, class_name: 'User', foreign_key: 'creator_id', optional: true
 
-    def self.get_cocktails(first_character)
+    def self.cocktails_by_char(char)
         cocktails = []
 
-        cocktails += Cocktail.all.select { |c| c.name.first === first_character }
+        api_response = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=#{char}"
+        
+        cocktails += Cocktail.all.select { |c| c.name.first === char }
+        cocktails += render_api_cocktails(api_response, cocktails)
 
-        apiResponse = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=#{first_character}"
+        cocktails.sort_by { |cocktail| cocktail.name }
+    end
 
-        if apiResponse
-            apiCocktails = JSON.parse(apiResponse)['drinks']
-            if apiCocktails
-                apiCocktails.each do |c|
+    def self.cocktails_by_name(name)
+        cocktails = []
+
+        api_response = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=#{name}"
+        
+        cocktails += self.where("lower(name) LIKE ?", "%#{name}%")
+        cocktails += render_api_cocktails(api_response, cocktails)
+
+        cocktails.sort_by { |cocktail| cocktail.name }
+    end
+
+    def self.render_api_cocktails(api_response, cocktails)
+        api_cocktail_arr = []
+        if api_response
+            api_cocktails = JSON.parse(api_response)['drinks']
+            if api_cocktails
+                api_cocktails.each do |c|
                     cocktail = parseApiCocktail(c)
                     if !cocktails.find { |arr_cocktail| arr_cocktail.name == cocktail.name }
-                        cocktails.push(cocktail)
+                        api_cocktail_arr.push(cocktail)
                     end
                 end
             end
         end
 
-        cocktails
+        api_cocktail_arr
     end
 
     def self.parseApiCocktail(apiCocktail)
