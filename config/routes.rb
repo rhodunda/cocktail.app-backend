@@ -8,8 +8,8 @@ Rails.application.routes.draw do
       resources :favorites
       resources :ingredients
       resources :cocktails
+      post 'cocktails/search-by-char', to: 'cocktails#search_by_char'
       post '/users/login' => 'users#login'
-
     end
   end
 end

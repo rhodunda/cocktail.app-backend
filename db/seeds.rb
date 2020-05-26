@@ -58,9 +58,11 @@ measures = ['1 cup', '1 tbsp', '2 tbsp', '1 shot', '2 shots', '3 shots', '1 quar
 
 5.times do
   cocktailSample = cocktails.sample;
-  cocktail = Cocktail.create(name: cocktailSample[:name], image: cocktailSample[:image], creator: User.all.sample)
-  3.times do
-    CocktailIngredient.create(ingredient: Ingredient.all.sample, cocktail: cocktail, measure: measures.sample)
+  if !Cocktail.find_by(name: cocktailSample[:name])
+    cocktail = Cocktail.create(name: cocktailSample[:name], image: cocktailSample[:image], creator: User.all.sample)
+    3.times do
+      CocktailIngredient.create(ingredient: Ingredient.all.sample, cocktail: cocktail, measure: measures.sample)
+    end
   end
 end
 
