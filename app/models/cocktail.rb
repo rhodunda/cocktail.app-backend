@@ -27,13 +27,24 @@ class Cocktail < ApplicationRecord
         cocktails.sort_by { |cocktail| cocktail.name }
     end
 
+    def self.cocktails_by_ingredient(ingredient)
+        cocktails = []
+
+        api_response = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=#{ingredient}"
+
+        cocktails += self.select { |cocktail| cocktail.ingredients.map { |i| i.name.downcase }.include? ingredient.downcase }
+        cocktails += render_api_cocktails(api_response, cocktails)
+
+        cocktails.sort_by { |cocktail| cocktail.name }
+    end
+
     def self.render_api_cocktails(api_response, cocktails)
         api_cocktail_arr = []
         if api_response
             api_cocktails = JSON.parse(api_response)['drinks']
             if api_cocktails
                 api_cocktails.each do |c|
-                    cocktail = parseApiCocktail(c)
+                    cocktail = parse_api_cocktail(c)
                     if !cocktails.find { |arr_cocktail| arr_cocktail.name == cocktail.name }
                         api_cocktail_arr.push(cocktail)
                     end
@@ -44,20 +55,20 @@ class Cocktail < ApplicationRecord
         api_cocktail_arr
     end
 
-    def self.parseApiCocktail(apiCocktail)
+    def self.parse_api_cocktail(api_cocktail)
         cocktail = Cocktail.new
         ingredients = []
-        cocktail.name = apiCocktail['strDrink']
-        cocktail.image = apiCocktail['strDrinkThumb']
-        cocktail.instructions = apiCocktail['strInstructions']
+        cocktail.name = api_cocktail['strDrink']
+        cocktail.image = api_cocktail['strDrinkThumb']
+        cocktail.instructions = api_cocktail['strInstructions']
 
         15.times do |index|
-            if !apiCocktail["strIngredient#{index + 1}"] || apiCocktail["strIngredient#{index + 1}"].empty?
+            if !api_cocktail["strIngredient#{index + 1}"] || api_cocktail["strIngredient#{index + 1}"].empty?
                 break
             else
-                ingredient = Ingredient.new(name: apiCocktail["strIngredient#{index + 1}"])
+                ingredient = Ingredient.new(name: api_cocktail["strIngredient#{index + 1}"])
                 cocktail.ingredients << ingredient
-                cocktail.cocktailIngredients[index].measure = apiCocktail["strMeasure#{index + 1}"].to_s.strip
+                cocktail.cocktailIngredients[index].measure = api_cocktail["strMeasure#{index + 1}"].to_s.strip
             end
         end
 

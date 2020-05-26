@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :cocktails, except: [:index]
       post 'cocktails/search-by-char', to: 'cocktails#search_by_char'
       post 'cocktails/search-by-name', to: 'cocktails#search_by_name'
+      post 'cocktails/search-by-ingredient', to: 'cocktails#search_by_ingredient'
       post '/users/login' => 'users#login'
     end
   end
