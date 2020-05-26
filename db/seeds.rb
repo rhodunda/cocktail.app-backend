@@ -42,16 +42,16 @@ Ingredients10 = Ingredient.create(name: "Hot Chocolate", image: "https://www.the
 puts "creating cocktails and cocktail ingredients..."
 
 cocktails = [
-  {name: 'Mojito', image: 'https://www.thecocktaildb.com/images/media/drink/3z6xdi1589574603.jpg'},
-  {name: 'Old Fashioned', image: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg'},
-  {name: 'Long Island Tea', image: 'https://www.thecocktaildb.com/images/media/drink/tppn6i1589574695.jpg'},
-  {name: 'Negroni', image: 'https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg'},
-  {name: 'Whiskey Sour', image: 'https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg'},
-  {name: 'Dry Martini', image: 'https://www.thecocktaildb.com/images/media/drink/6ck9yi1589574317.jpg'},
-  {name: 'Daiquiri', image: 'https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg'},
-  {name: 'Margarita', image: 'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg'},
-  {name: 'Manhattan', image: 'https://www.thecocktaildb.com/images/media/drink/hz7p4t1589575281.jpg'},
-  {name: 'Moscow Mule', image: 'https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg'}
+  {name: 'Mojito', image: 'https://www.thecocktaildb.com/images/media/drink/3z6xdi1589574603.jpg', instructions: 'Muddle mint leaves with sugar and lime juice. Add a splash of soda water and fill the glass with cracked ice. Pour the rum and top with soda water. Garnish and serve with straw.'},
+  {name: 'Old Fashioned', image: 'https://www.thecocktaildb.com/images/media/drink/vrwquq1478252802.jpg', instructions: 'Place sugar cube in old fashioned glass and saturate with bitters, add a dash of plain water. Muddle until dissolved.\r\nFill the glass with ice cubes and add whiskey.\r\n\r\nGarnish with orange twist, and a cocktail cherry.'},
+  {name: 'Long Island Tea', image: 'https://www.thecocktaildb.com/images/media/drink/tppn6i1589574695.jpg', instructions: 'Combine all ingredients (except cola) and pour over ice in a highball glass. Add the splash of cola for color. Decorate with a slice of lemon and serve.'},
+  {name: 'Negroni', image: 'https://www.thecocktaildb.com/images/media/drink/qgdu971561574065.jpg', instructions: 'Stir into glass over ice, garnish and serve.'},
+  {name: 'Whiskey Sour', image: 'https://www.thecocktaildb.com/images/media/drink/hbkfsh1589574990.jpg', instructions: 'Shake with ice. Strain into chilled glass, garnish and serve. If served \'On the rocks\', strain ingredients into old-fashioned glass filled with ice.'},
+  {name: 'Dry Martini', image: 'https://www.thecocktaildb.com/images/media/drink/6ck9yi1589574317.jpg', instructions: 'Straight: Pour all ingredients into mixing glass with ice cubes. Stir well. Strain in chilled martini cocktail glass. Squeeze oil from lemon peel onto the drink, or garnish with olive.'},
+  {name: 'Daiquiri', image: 'https://www.thecocktaildb.com/images/media/drink/mrz9091589574515.jpg', instructions: 'Pour all ingredients into shaker with ice cubes. Shake well. Strain in chilled cocktail glass.'},
+  {name: 'Margarita', image: 'https://www.thecocktaildb.com/images/media/drink/5noda61589575158.jpg', instructions: 'Rub the rim of the glass with the lime slice to make the salt stick to it. Take care to moisten only the outer rim and sprinkle the salt on it. The salt should present to the lips of the imbiber and never mix into the cocktail. Shake the other ingredients with ice, then carefully pour into the glass.'},
+  {name: 'Manhattan', image: 'https://www.thecocktaildb.com/images/media/drink/hz7p4t1589575281.jpg', instructions: 'Stirred over ice, strained into a chilled glass, garnished, and served up.'},
+  {name: 'Moscow Mule', image: 'https://www.thecocktaildb.com/images/media/drink/3pylqc1504370988.jpg', instructions: 'Combine vodka and ginger beer in a highball glass filled with ice. Add lime juice. Stir gently. Garnish.'}
 ]
 
 measures = ['1 cup', '1 tbsp', '2 tbsp', '1 shot', '2 shots', '3 shots', '1 quart', '18 gallons']
@@ -59,7 +59,7 @@ measures = ['1 cup', '1 tbsp', '2 tbsp', '1 shot', '2 shots', '3 shots', '1 quar
 5.times do
   cocktailSample = cocktails.sample;
   if !Cocktail.find_by(name: cocktailSample[:name])
-    cocktail = Cocktail.create(name: cocktailSample[:name], image: cocktailSample[:image], creator: User.all.sample)
+    cocktail = Cocktail.create(name: cocktailSample[:name], image: cocktailSample[:image], instructions: cocktailSample[:instructions], creator: User.all.sample)
     3.times do
       CocktailIngredient.create(ingredient: Ingredient.all.sample, cocktail: cocktail, measure: measures.sample)
     end
