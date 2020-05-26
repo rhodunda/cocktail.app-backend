@@ -49,9 +49,10 @@ class Cocktail < ApplicationRecord
         ingredients = []
         cocktail.name = apiCocktail['strDrink']
         cocktail.image = apiCocktail['strDrinkThumb']
+        cocktail.instructions = apiCocktail['strInstructions']
 
         15.times do |index|
-            if !apiCocktail["strIngredient#{index + 1}"]
+            if !apiCocktail["strIngredient#{index + 1}"] || apiCocktail["strIngredient#{index + 1}"].empty?
                 break
             else
                 ingredient = Ingredient.new(name: apiCocktail["strIngredient#{index + 1}"])
