@@ -23,8 +23,10 @@ class Api::V1::FavoritesController < ApplicationController
         favorite = Favorite.find_by(user_id: params[:user_id], cocktail_id: cocktail.id)
         if favorite
             favorite.destroy
+            favorite_status = 'deleted'
         else
             favorite = Favorite.create(user_id: params[:user_id], cocktail_id: cocktail.id)
+            favorite_status = 'created'
         end
 
         render json: cocktail.as_json(include: [:ingredients, :cocktailIngredients, :reviews])
