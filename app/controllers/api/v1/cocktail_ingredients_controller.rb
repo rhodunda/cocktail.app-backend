@@ -2,6 +2,7 @@ class Api::V1::CocktailIngredientsController < ApplicationController
     def index
         cocktails = Cocktail.all
         render json: cocktails
+        
     end 
 
     def show

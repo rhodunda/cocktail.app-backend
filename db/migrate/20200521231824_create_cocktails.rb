@@ -4,7 +4,7 @@ class CreateCocktails < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :image
       t.references :creator
-
+      
       t.timestamps
     end
   end
