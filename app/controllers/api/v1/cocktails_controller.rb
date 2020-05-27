@@ -7,7 +7,7 @@ class Api::V1::CocktailsController < ApplicationController
     def create
         cocktail = Cocktail.new(name: params['name'], image: params['image'])
         cocktail.save
-        render json: cocktail
+        render json: cocktail.as_json(include: [:ingredients, :cocktailIngredients, :reviews])
     end
 
     def search_by_char
