@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :users
       resources :cocktail_ingredients
-      resources :reviews
+      resources :reviews do
+        post 'get-user-email', to: 'reviews#get_user_email'
+      end
       resources :favorites
       resources :ingredients
       resources :cocktails, except: [:index]

@@ -12,17 +12,17 @@ class Api::V1::CocktailsController < ApplicationController
 
     def search_by_char
         cocktails = Cocktail.cocktails_by_char(params['q'])
-        render json: cocktails.as_json(include: [:ingredients, :cocktailIngredients])
+        render json: cocktails.as_json(include: [:ingredients, :cocktailIngredients, :reviews])
     end
 
     def search_by_name
         cocktails = Cocktail.cocktails_by_name(params['q'])
-        render json: cocktails.as_json(include: [:ingredients, :cocktailIngredients])
+        render json: cocktails.as_json(include: [:ingredients, :cocktailIngredients, :reviews])
     end
 
     def search_by_ingredient
         cocktails = Cocktail.cocktails_by_ingredient(params['q'])
-        render json: cocktails.as_json(include: [:ingredients, :cocktailIngredients])
+        render json: cocktails.as_json(include: [:ingredients, :cocktailIngredients, :reviews])
     end
 
     def is_favorite?
