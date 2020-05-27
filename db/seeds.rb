@@ -35,7 +35,7 @@ Ingredients4 = Ingredient.create(name: "Kahlua", image: "https://www.thecocktail
 Ingredients5 = Ingredient.create(name: "Blue Maui", image: "https://www.thecocktaildb.com/images/ingredients/Blue%20Maui.png")
 Ingredients6 = Ingredient.create(name: "White Rum", image: "https://www.thecocktaildb.com/images/ingredients/White%20Rum.png")
 Ingredients7 = Ingredient.create(name: "Fennel Seeds", image: "https://www.thecocktaildb.com/images/ingredients/Fennel%20Seeds.png")
-Ingredients8 = Ingredient.create(name: "Anisette", image: "https://www.thecocktaildb.com/images/ingredients/Anisette.png")
+Ingredients8 = Ingredient.create(name: "Tequila", image: "https://www.thecocktaildb.com/images/ingredients/Tequila.png")
 Ingredients9 = Ingredient.create(name: "Cardamom", image: "https://www.thecocktaildb.com/images/ingredients/Cardamom.png")
 Ingredients10 = Ingredient.create(name: "Hot Chocolate", image: "https://www.thecocktaildb.com/images/ingredients/Hot%20Chocolate.png")
 
