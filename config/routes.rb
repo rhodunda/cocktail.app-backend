@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       post 'cocktails/search-by-name', to: 'cocktails#search_by_name'
       post 'cocktails/search-by-ingredient', to: 'cocktails#search_by_ingredient'
       post '/login' => 'users#login'
+      post '/cocktails/is-favorite', to: 'cocktails#is_favorite?'
     end
   end
 end
