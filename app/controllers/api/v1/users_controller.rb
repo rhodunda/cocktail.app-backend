@@ -17,13 +17,15 @@ class Api::V1::UsersController < ApplicationController
 end 
 
   def login
-    user = User.find_by(email: params[:email], password: params[:password])
+    user = User.find_by(email: params['email'], password: params['password'])
         if user != nil
             render json: user
         else 
-            render json: {message: 'loggin Failed'}
+            render json: { errors: ['User Not Found'] }
         end
   end 
+
+
 
   def update
     user.update(user_params)
