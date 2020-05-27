@@ -26,7 +26,7 @@ class Api::V1::ReviewsController < ApplicationController
         review.cocktail_id = cocktail.id
 
         if review.save
-            render json: cocktail.as_json(include: [:ingredients, :cocktailIngredients, :reviews])
+            render json: { cocktail: cocktail.as_json(include: [:ingredients, :cocktailIngredients, :reviews]), review: review.as_json }
         else
             render json: { errors: review.errors.full_messages }
         end
