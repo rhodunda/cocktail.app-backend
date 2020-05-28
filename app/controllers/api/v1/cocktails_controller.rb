@@ -10,6 +10,15 @@ class Api::V1::CocktailsController < ApplicationController
         render json: cocktail.as_json(include: [:ingredients, :cocktailIngredients, :reviews])
     end
 
+    def update
+        cocktail = Cocktail.find_by(id: params[:cocktail_id])
+        if cocktail.update(name: params[:name], image: params[:image], instructions: params[:instructions])
+            render json: cocktail.as_json
+        else
+            render json: { error: 'Failed to update cocktail' }
+        end
+    end
+
     def search_by_char
         cocktails = Cocktail.cocktails_by_char(params['q'])
         render json: cocktails.as_json
