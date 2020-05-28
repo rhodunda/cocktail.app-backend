@@ -13,5 +13,14 @@ class Api::V1::CocktailIngredientsController < ApplicationController
         cocktail = Cocktail.new(name: params['name'], image_url: params['image_url'])
         cocktail.save
         render json: cocktail
-    end 
+    end
+
+    def destroy
+        cocktail_ingredient = CocktailIngredient.find(params[:id])
+        if cocktail_ingredient.destroy
+            render json: true
+        else
+            render json: false
+        end
+    end
 end
