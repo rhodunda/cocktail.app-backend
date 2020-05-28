@@ -10,7 +10,7 @@ class Api::V1::ReviewsController < ApplicationController
         render json: review
     end 
 
-    def create
+     def create
         review = Review.new(user_id: params['user_id'], cocktail_id: params['cocktail_id'], rating: params['rating'], content: params['content'])
         review.save
         render json: review
