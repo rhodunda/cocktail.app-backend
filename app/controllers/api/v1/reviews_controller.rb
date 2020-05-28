@@ -30,6 +30,7 @@ class Api::V1::ReviewsController < ApplicationController
         else
             render json: { errors: review.errors.full_messages }
         end
+
     end 
 
     def destroy
