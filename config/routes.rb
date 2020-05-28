@@ -9,7 +9,9 @@ Rails.application.routes.draw do
       end
       resources :favorites
       resources :ingredients
-      resources :cocktails, except: [:index]
+      resources :cocktails, except: [:index] do
+        post 'add-ingredient', to: 'cocktails#add_ingredient'
+      end
       post 'cocktails/search-by-char', to: 'cocktails#search_by_char'
       post 'cocktails/search-by-name', to: 'cocktails#search_by_name'
       post 'cocktails/search-by-ingredient', to: 'cocktails#search_by_ingredient'

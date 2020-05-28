@@ -98,4 +98,16 @@ class Cocktail < ApplicationRecord
 
         cocktail
     end
+
+    def add_ingredient(params)
+        if !params[:name].empty?
+            ingredient = Ingredient.where("LOWER(name) = ?", params[:name].downcase).first
+            if !ingredient
+                ingredient = Ingredient.create(name: params[:name]);
+            end
+            cocktail_ingredient = CocktailIngredient.create(ingredient: ingredient, cocktail: self, measure: params[:measure])
+
+            { ingredient: ingredient, cocktail_ingredient: cocktail_ingredient }
+        end
+    end
 end
