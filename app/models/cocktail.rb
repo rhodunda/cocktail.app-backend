@@ -44,7 +44,7 @@ class Cocktail < ApplicationRecord
             api_cocktails = JSON.parse(api_response)['drinks']
             if api_cocktails
                 api_cocktails.each do |c|
-                    cocktail = parse_api_cocktail(c)
+                    cocktail = parse_api_cocktail_show(c)
                     if !cocktails.find { |arr_cocktail| arr_cocktail.name == cocktail.name }
                         api_cocktail_arr.push(cocktail)
                     end
@@ -55,7 +55,7 @@ class Cocktail < ApplicationRecord
         api_cocktail_arr
     end
 
-    def self.parse_api_cocktail(api_cocktail)
+    def self.parse_api_cocktail_show(api_cocktail)
         cocktail = Cocktail.new
         ingredients = []
         cocktail.name = api_cocktail['strDrink']
@@ -94,6 +94,16 @@ class Cocktail < ApplicationRecord
             if cocktail.id && ingredient.id
                 CocktailIngredient.create(cocktail: cocktail, ingredient: ingredient, measure: cocktail_ingredients[index][:measure])
             end
+        end
+
+        cocktail
+    end
+
+    def self.get_show_info(id, name)
+        if id
+            cocktail = Cocktail.find_by(id: id)
+        else
+            cocktail = self.cocktails_by_name(name).first
         end
 
         cocktail

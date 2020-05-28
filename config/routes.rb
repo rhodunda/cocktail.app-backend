@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       post 'cocktails/search-by-char', to: 'cocktails#search_by_char'
       post 'cocktails/search-by-name', to: 'cocktails#search_by_name'
       post 'cocktails/search-by-ingredient', to: 'cocktails#search_by_ingredient'
+      post 'cocktails/get-show-info', to: 'cocktails#get_show_info'
       post '/login' => 'users#login'
       post  'user/favorites', to: 'users#user_favorites'
       post '/cocktails/is-favorite', to: 'cocktails#is_favorite?'
