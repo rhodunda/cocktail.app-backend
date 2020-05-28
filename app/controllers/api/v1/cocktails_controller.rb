@@ -5,7 +5,7 @@ class Api::V1::CocktailsController < ApplicationController
     end 
 
     def create
-        cocktail = Cocktail.new(name: params['name'], image: params['image'], creator_id: params['creator_id'])
+        cocktail = Cocktail.new(name: params['name'], image: params['image'], instructions: params['instructions'], creator_id: params['creator_id'])
         cocktail.save
         render json: cocktail.as_json(include: [:ingredients, :cocktailIngredients, :reviews])
     end
