@@ -28,7 +28,7 @@ class Api::V1::UsersController < ApplicationController
   def user_favorites
     user = User.find_by(params[:id])
     cocktails_for_user_favorites = Cocktail.all.select{|cocktail| user.favorites}
-    render json: cocktails_for_user_favorites
+    render json: cocktails_for_user_favorites.as_json(include: [:ingredients, :cocktailIngredients])
   end
 
 
