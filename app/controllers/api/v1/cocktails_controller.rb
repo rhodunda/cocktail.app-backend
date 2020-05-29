@@ -57,4 +57,13 @@ class Api::V1::CocktailsController < ApplicationController
             render json: { error: 'Failed to save ingredient' }
         end
     end
+
+    def destroy
+        cocktail = Cocktail.find_by(id: params[:id])
+        if cocktail.destroy
+            render json: true
+        else
+            render json: false
+        end
+    end
 end
