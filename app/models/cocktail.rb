@@ -10,7 +10,7 @@ class Cocktail < ApplicationRecord
 
         api_response = RestClient.get "https://www.thecocktaildb.com/api/json/v1/1/search.php?f=#{char}"
         
-        cocktails += Cocktail.all.select { |c| c.name.first === char }
+        cocktails += Cocktail.all.select { |c| c.name.first.downcase == char.downcase }
         cocktails += render_api_cocktails(api_response, cocktails)
 
         cocktails.sort_by { |cocktail| cocktail.name }
