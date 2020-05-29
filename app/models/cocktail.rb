@@ -40,7 +40,7 @@ class Cocktail < ApplicationRecord
 
     def self.render_api_cocktails(api_response, cocktails)
         api_cocktail_arr = []
-        if api_response
+        if api_response && !api_response.empty?
             api_cocktails = JSON.parse(api_response)['drinks']
             if api_cocktails
                 api_cocktails.each do |c|
