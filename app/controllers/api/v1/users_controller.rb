@@ -26,7 +26,7 @@ class Api::V1::UsersController < ApplicationController
   end 
 
   def user_favorites
-    user = User.find_by(params[:id])
+    user = User.find_by(id: params[:id])
     cocktails_for_user_favorites = user.favorites.map { |favorite| favorite.cocktail }
     render json: cocktails_for_user_favorites.as_json(include: [:ingredients, :cocktailIngredients])
   end
